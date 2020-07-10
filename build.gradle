@@ -1,15 +1,51 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-  testCompile 'junit:junit:4.12'
-}
-
+mainClassName = 'org.andre.guerra.examples.HelloWorld'
 sourceCompatibility = 1.11
 targetCompatibility = 1.11
 
-mainClassName = 'org.andre.guerra.examples.HelloWorld'
+buildscript {
+    repositories {
+        jcenter() 
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+    mavenCentral()
+    maven { url "https://repository.apache.org/content/repositories/snapshots/" }
+}
+
+configurations {
+    flinkShadowJar
+    flinkShadowJar.exclude group: 'org.apache.flink', module: 'force-shading'
+    flinkShadowJar.exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    flinkShadowJar.exclude group: 'org.slf4j'
+    flinkShadowJar.exclude group: 'org.apache.logging.log4j'
+}
+
+dependencies {
+    compile "org.apache.flink:flink-streaming-java_2.11:1.11.0"
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    main.compileClasspath += configurations.flinkShadowJar
+    main.runtimeClasspath += configurations.flinkShadowJar
+
+    test.compileClasspath += configurations.flinkShadowJar
+    test.runtimeClasspath += configurations.flinkShadowJar
+
+    javadoc.classpath += configurations.flinkShadowJar
+}
+
+run.classpath = sourceSets.main.runtimeClasspath
+
+shadowJar {
+    configurations = [project.configurations.flinkShadowJar]
+}
