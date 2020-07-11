@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'org.andre.guerra.examples.HelloWorld'
+mainClassName = 'org.andre.guerra.examples.FlinkEnvironment'
 sourceCompatibility = 1.11
 targetCompatibility = 1.11
 
