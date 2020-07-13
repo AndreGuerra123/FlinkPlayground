@@ -7,8 +7,6 @@ import org.apache.flink.api.java.utils.ParameterTool;
 
 public class WordCount
 {
-    private static final String INPUT = null;
-    private static final String OUTPUT = null;
 
     public static void main(String[] args)
     throws Exception
@@ -19,7 +17,7 @@ public class WordCount
     
     env.getConfig().setGlobalJobParameters(params);
     
-    DataSet<String> text = env.readTextFile(INPUT);
+    DataSet<String> text = env.readTextFile(WordCount.class.getResource("./resources/wc").getPath());
     
     DataSet<String> filtered = text.filter(new NWordFilter());
 
@@ -27,7 +25,7 @@ public class WordCount
     
     DataSet<Tuple2<String, Integer>> counts = tokenized.groupBy(0).sum(1);
   
-    counts.writeAsCsv(OUTPUT, "\n", " ");
+    counts.writeAsText("wc_solution");
       
     env.execute("WordCount Example");
     
