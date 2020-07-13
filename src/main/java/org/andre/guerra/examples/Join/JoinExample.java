@@ -29,15 +29,15 @@ public class JoinExample {
 
 
         DataSet<Tuple3<String,String,String>> leftOuterJoin = personSet
-                .leftOuterJoin(locationSet).where(0).equalTo(0).with(new InnerJoiner());
+                .leftOuterJoin(locationSet).where(0).equalTo(0).with(new LeftOuterJoiner());
 
 
         DataSet<Tuple3<String,String,String>> rightOuterJoin = personSet
-                .rightOuterJoin(locationSet).where(0).equalTo(0).with(new InnerJoiner());
+                .rightOuterJoin(locationSet).where(0).equalTo(0).with(new RightOuterJoiner());
 
 
         DataSet<Tuple3<String,String,String>> outerJoin = personSet
-                .join(locationSet).where(0).equalTo(0).with(new InnerJoiner());
+                .join(locationSet).where(0).equalTo(0).with(new FullOuterJoiner());
 
         innerJoin.writeAsText("inner_join_solution");
 
