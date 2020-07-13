@@ -1,4 +1,4 @@
-package org.andre.guerra.examples.Join;
+package org.andre.guerra.examples.JoinTables;
 
 import org.apache.flink.api.common.functions.JoinFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
