@@ -20,7 +20,7 @@ public class WordCountStreamExample
     
     env.getConfig().setGlobalJobParameters(params);
     
-    DataStream<String> text = env.readTextFile(WordCountStreamExample.class.getResource("../resources/wc").getPath());
+    DataStream<String> text = env.readTextFile(WordCountStreamExample.class.getResource("../Resources/wc").getPath());
     
     DataStream<String> filtered = text.filter(new NWordFilter());
 

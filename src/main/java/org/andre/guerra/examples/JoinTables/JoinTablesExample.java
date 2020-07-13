@@ -15,12 +15,12 @@ public class JoinTablesExample {
 
         env.getConfig().setGlobalJobParameters(params);
 
-        DataSet<String> persons = env.readTextFile(JoinExample.class.getResource("../resources/persons").getPath());
+        DataSet<String> persons = env.readTextFile(JoinTablesExample.class.getResource("../Resources/persons").getPath());
 
         DataSet<Tuple2<String, String>> personSet = persons.map(new CommaSplitter());
 
         DataSet<String> locations = env
-                .readTextFile(JoinExample.class.getResource("../resources/locations").getPath());
+                .readTextFile(JoinTablesExample.class.getResource("../Resources/locations").getPath());
 
         DataSet<Tuple2<String, String>> locationSet = locations.map(new CommaSplitter());
 
