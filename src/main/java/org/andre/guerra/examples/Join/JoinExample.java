@@ -37,7 +37,7 @@ public class JoinExample {
 
 
         DataSet<Tuple3<String,String,String>> outerJoin = personSet
-                .join(locationSet).where(0).equalTo(0).with(new FullOuterJoiner());
+                .fullOuterJoin(locationSet).where(0).equalTo(0).with(new FullOuterJoiner());
 
         innerJoin.writeAsText("inner_join_solution");
 
