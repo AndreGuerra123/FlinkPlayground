@@ -1,11 +1,11 @@
-package org.andre.guerra.examples;
+package org.andre.guerra.examples.WordCount;
 
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.utils.ParameterTool;
 
-public class WordCount
+public class WordCountExample
 {
 
     public static void main(String[] args)
@@ -17,7 +17,7 @@ public class WordCount
     
     env.getConfig().setGlobalJobParameters(params);
     
-    DataSet<String> text = env.readTextFile(WordCount.class.getResource("./resources/wc").getPath());
+    DataSet<String> text = env.readTextFile(WordCountExample.class.getResource("./resources/wc").getPath());
     
     DataSet<String> filtered = text.filter(new NWordFilter());
 
@@ -25,7 +25,7 @@ public class WordCount
     
     DataSet<Tuple2<String, Integer>> counts = tokenized.groupBy(0).sum(1);
   
-    counts.writeAsText("wc_solution");
+    counts.writeAsText("word_count_solution");
       
     env.execute("WordCount Example");
     

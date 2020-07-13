@@ -1,4 +1,4 @@
-package org.andre.guerra.examples;
+package org.andre.guerra.examples.WordCount;
 
 import org.apache.flink.api.common.functions.FilterFunction;
 
