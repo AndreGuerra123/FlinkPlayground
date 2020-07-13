@@ -1,5 +1,6 @@
-package org.andre.guerra.examples.Join;
+package org.andre.guerra.examples.JoinTables;
 
+import org.andre.guerra.examples.Join.RightOuterJoiner;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;

@@ -17,7 +17,7 @@ public class WordCountExample
     
     env.getConfig().setGlobalJobParameters(params);
     
-    DataSet<String> text = env.readTextFile(WordCountExample.class.getResource("./resources/wc").getPath());
+    DataSet<String> text = env.readTextFile(WordCountExample.class.getResource("../resources/wc").getPath());
     
     DataSet<String> filtered = text.filter(new NWordFilter());
 
